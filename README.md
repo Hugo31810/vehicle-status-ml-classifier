@@ -1,6 +1,6 @@
 
 
-# Edge ML Vehicle Telemetry System
+# IoT Vehicle status ML classifier
 
 ## Edge Computing and Machine Learning applied to vehicle telemetria
 
