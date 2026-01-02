@@ -1,6 +1,3 @@
-Perfecto. Aquí tienes el **README.md FINAL**, **limpio**, **profesional**, **sin emojis**, con tono académico–portfolio y **listo para copiar y pegar** directamente en GitHub.
-
----
 
 
 # Edge ML Vehicle Telemetry System
@@ -73,7 +70,7 @@ Raspberry Pi (Edge Device)
   v
   Web Dashboard
 
-````
+
 
 ---
 
