@@ -2,7 +2,7 @@ import random
 import csv
 
 NUM_MUESTRAS = 1000
-salida = "dataset_coche_grande.csv"
+salida = "dataset.csv"
 
 def generar_muestra(estado):
     if estado == "ralenti":

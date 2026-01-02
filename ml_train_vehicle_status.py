@@ -5,10 +5,8 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# --------------------------------------------------
 # 1. Cargar dataset
-# --------------------------------------------------
-df = pd.read_csv("dataset_coche_grande.csv")
+df = pd.read_csv("dataset.csv")
 
 X = df[[
     "rpm",
@@ -20,9 +18,7 @@ X = df[[
 
 y = df["estado"]
 
-# --------------------------------------------------
 # 2. Train / Test split
-# --------------------------------------------------
 X_train, X_test, y_train, y_test = train_test_split(
     X, y,
     test_size=0.2,
@@ -30,9 +26,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     stratify=y
 )
 
-# --------------------------------------------------
 # 3. Modelo Random Forest
-# --------------------------------------------------
 model = RandomForestClassifier(
     n_estimators=100,
     max_depth=10,
@@ -45,9 +39,7 @@ import joblib
 joblib.dump(model, "vehicle_status_model.pkl")
 
 
-# --------------------------------------------------
 # 4. Evaluacion
-# --------------------------------------------------
 y_pred = model.predict(X_test)
 
 accuracy = accuracy_score(y_test, y_pred)
@@ -56,9 +48,8 @@ print("\nAccuracy:", round(accuracy * 100, 2), "%\n")
 print("Classification report:\n")
 print(classification_report(y_test, y_pred))
 
-# --------------------------------------------------
+
 # 5. Matriz de confusion
-# --------------------------------------------------
 cm = confusion_matrix(y_test, y_pred, labels=model.classes_)
 
 plt.figure(figsize=(7, 5))
