@@ -139,8 +139,6 @@ dtoverlay=mcp2515-can0,oscillator=8000000,interrupt=25
 ```bash
 git clone [https://github.com/Hugo31810/vehicle-status-ml-classifier.git](https://github.com/Hugo31810/vehicle-status-ml-classifier.git)
 cd vehicle-status-ml-classifier
-pip install -r requirements.txt
-
 ```
 
 ### 3. Run the System
@@ -148,7 +146,7 @@ pip install -r requirements.txt
 To start data acquisition and inference:
 
 ```bash
-python main.py
+python telemtria.py
 
 ```
 
@@ -193,7 +191,3 @@ python data_generator.py
 *Subject: Ambient Intelligence and Ubiquitous Computing*
 
 [GitHub Profile](https://www.google.com/search?q=https://github.com/Hugo31810)
-
-```
-
-```
