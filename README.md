@@ -165,15 +165,13 @@ python data_generator.py
 
 ```text
 .
-├── dataset/                # Generated CSV datasets
-├── models/                 # Trained .pkl models
-├── src/
-│   ├── main.py             # Main execution script
-│   ├── data_generator.py   # Script for creating datasets
-│   ├── inference.py        # ML loading and prediction logic
-│   └── mqtt_client.py      # MQTT communication handler
-├── dashboard/              # Web interface (HTML/JS)
-├── requirements.txt        # Python dependencies
+├── dataset.csv                 # Generated CSV datasets
+├── vehicle_state_model.pkl     # Trained .pkl models
+├── main.py                     # Main execution script
+├── data_generator.py           # Script for creating datasets
+├── ml_train_vehicle_status.py  # ML loading and prediction logic
+└── telemetria.py               # MQTT communication handler
+├── index.html                  # Web interface (HTML/JS)
 └── README.md
 
 ```
