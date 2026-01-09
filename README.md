@@ -34,9 +34,27 @@ In the context of **Ambient Intelligence** and **Smart Transportation**, this pr
 
 ---
 
+## 🌍 Real-World Applications
+
+This system is not just an academic exercise; it addresses specific needs in the **Smart Transportation** industry:
+
+### 1. 📉 Usage-Based Insurance (UBI)
+Enables **"Pay-How-You-Drive"** models. Insurers can calculate dynamic risk profiles based on the frequency of `braking` (hard stops) and `acceleration` (aggressive driving) events rather than just distance driven.
+
+### 2. 🌱 Eco-Driving & Sustainability
+Acts as an active assistant to reduce carbon footprint. By detecting inefficient states like excessive `idling` or high `rpm` with low load, the system can prompt drivers to optimize fuel consumption.
+
+### 3. 🚚 Fleet Management
+Allows logistics managers to monitor vehicle health. Continuous detection of aggressive driving states helps predict mechanical wear (Predictive Maintenance) and ensures driver safety.
+
+### 4. 🏙️ Smart Cities (Vehicle as a Sensor)
+Aggregated data from multiple vehicles can identify road infrastructure issues. For example, frequent `braking` inference at a specific GPS coordinate may indicate a dangerous intersection or a pothole.
+
+---
+
 ## 🏗️ System Architecture
 
- The system follows a distributed architecture where the heavy lifting (inference) is done at the edge to reduce latency and bandwidth usage.
+The system follows a distributed architecture where the heavy lifting (inference) is done at the edge to reduce latency and bandwidth usage.
 
 ```mermaid
 graph LR
@@ -108,7 +126,7 @@ A **Random Forest Classifier** was selected for its robustness against noise and
 
 ### 1. Prerequisites
 
-Ensure your Raspberry Pi has the CAN interface enabled in `/boot/config.txt`:
+Ensure your Raspberry Pi has the CAN interface enabled in `/boot/firmware/config.txt`:
 
 ```bash
 dtparam=spi=on
@@ -177,16 +195,5 @@ python data_generator.py
 [GitHub Profile](https://www.google.com/search?q=https://github.com/Hugo31810)
 
 ```
-
----
-
-### ¿Qué mejoras incluye este README?
-
-1.  **Badges (Escudos):** Dan un aspecto profesional inmediato y resumen las tecnologías.
-2.  **Contexto Académico/Profesional:** La introducción "vende" el proyecto no solo como código, sino como una solución de ingeniería completa.
-3.  **Diagrama Mermaid:** GitHub renderiza automáticamente el bloque `mermaid` como un diagrama de flujo. Es mucho mejor que el arte ASCII y se ve muy moderno.
-4.  **Tablas:** Organizan la información de los datos de forma limpia.
-5.  **Sección de Hardware:** Especifica los módulos (MCP2515, Air780EU) que mencionaste en la memoria, lo que demuestra conocimiento de bajo nivel.
-6.  **Instrucciones de uso:** Imprescindible para que quien visite el repo sepa que es un proyecto funcional y reproducible.
 
 ```
