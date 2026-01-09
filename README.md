@@ -17,7 +17,12 @@ This project implements a complete **End-to-End IoT solution** that acquires veh
 **Live Dashboard:** [View Dashboard Here](https://hugo31810.github.io/vehicle-status-ml-classifier/)
 
 *(Place a screenshot of your dashboard here)*
-`![Dashboard Preview](assets/dashboard_screenshot.png)`
+`![Dashboard Preview](assets/)`
+
+
+| ![Dashboard Preview](assets/1.png) | ![Dashboard Preview](assets/2.png) | ![Dashboard Preview](assets/3.png) |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+
 
 ---
 
