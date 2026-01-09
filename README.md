@@ -1,159 +1,54 @@
+# 🚗 IoT Vehicle Status ML Classifier
 
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python)
+![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-Edge-C51A4A?style=for-the-badge&logo=raspberrypi)
+![MQTT](https://img.shields.io/badge/MQTT-Protocol-660066?style=for-the-badge&logo=eclipse-mosquitto)
+![Machine Learning](https://img.shields.io/badge/AI-Scikit--Learn-orange?style=for-the-badge&logo=scikit-learn)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-# IoT Vehicle status ML classifier
+> **Edge Computing and Machine Learning applied to real-time vehicle telemetry.**
 
-## Edge Computing and Machine Learning applied to vehicle telemetria
-
-This project presents a complete Edge Computing system for vehicle telemetria acquisition, dataset generation, and real-time machine learning inference using data collected from the OBD-II interface.
-
-The system is designed as an academic and professional portfolio project, integrating IoT, Edge Intelligence, Machine Learning, and real-time visualization.
-
----
-
-## Project Overview
-
-The solution is composed of:
-
-- A vehicle telemetria acquisition system using OBD-II
-- A Raspberry Pi acting as an edge device
-- Real-time data processing and storage
-- Automatic dataset generation and labeling
-- A Machine Learning model for driving state classification
-- Real-time inference executed at the edge
-- Data transmission via MQTT
-- A web-based dashboard for visualization
-
-The project evolves from raw telemetria acquisition to Edge Intelligence, following a real-world IoT workflow.
+This project implements a complete **End-to-End IoT solution** that acquires vehicle telemetry via OBD-II, processes it on the edge (Raspberry Pi), and uses a **Machine Learning model** to classify the driving state in real-time. The results are transmitted via **4G/LTE** to a cloud dashboard for visualization.
 
 ---
 
-## Driving State Classification
+## 📸 Demo & Visualization
 
-The system classifies the vehicle driving state into four classes:
+**Live Dashboard:** [View Dashboard Here](https://hugo31810.github.io/vehicle-status-ml-classifier/)
 
-- ralenti
-- aceleracion
-- frenado
-- velocidad_constante
-
-Classification is based on features extracted directly at the edge:
-
-- Speed
-- RPM
-- Throttle position
-- Engine load
-- Speed variation (delta_speed)
-
-The model is trained offline and deployed on the Raspberry Pi for real-time inference.
+*(Place a screenshot of your dashboard here)*
+`![Dashboard Preview](assets/dashboard_screenshot.png)`
 
 ---
 
-## System Architecture
+## 💡 Project Overview
 
-Vehicle (OBD-II)
-|
-v
-CAN Bus (MCP2515 + TJA1050)
-|
-v
-Raspberry Pi (Edge Device)
+In the context of **Ambient Intelligence** and **Smart Transportation**, this project moves beyond simple data logging. It demonstrates **Edge Intelligence** by enabling the device to understand *what* the vehicle is doing, not just reporting raw numbers.
 
-* Data acquisition
-* Preprocessing
-* Dataset generation (CSV)
-* ML inference
-* MQTT publisher
-  |
-  v
-  MQTT Broker
-  |
-  v
-  Web Dashboard
-
-
+**Key Capabilities:**
+* **OBD-II Acquisition:** Reads live data from the vehicle's CAN bus.
+* **Auto-Labeling Pipeline:** Automatically generates labeled datasets using heuristic rules, eliminating manual tagging.
+* **Edge Inference:** Runs a Random Forest classifier locally on the Raspberry Pi.
+* **4G Connectivity:** Independent of Wi-Fi networks using the Air780EU module.
+* **Decoupled Architecture:** Uses MQTT to separate data generation from visualization.
 
 ---
 
-## Dataset Generation
+## 🏗️ System Architecture
 
-The dataset is generated automatically on the edge device and stored locally in CSV format:
+ The system follows a distributed architecture where the heavy lifting (inference) is done at the edge to reduce latency and bandwidth usage.
 
-```csv
-speed,rpm,throttle,load,delta_speed,label
-```
-
-Labels are assigned using heuristic rules, enabling scalable dataset creation without manual labeling.
-
----
-
-## Machine Learning
-
-* Problem type: Supervised multi-class classification
-* Model: Random Forest (exported as .pkl)
-* Inference location: Edge device (Raspberry Pi)
-* Latency: Low, no cloud dependency
-
-This approach demonstrates a real Edge Intelligence use case.
-
----
-
-## Dashboard
-
-The web dashboard provides:
-
-* Real-time telemetria visualization
-* Live driving state inference
-* Historical charts
-* Remote access via 4G connectivity
-
-The dashboard receives data through MQTT and updates dynamically.
-
----
-
-## Technologies Used
-
-* Python 3
-* SocketCAN
-* MQTT (Mosquitto)
-* HTML, CSS, JavaScript
-* Paho MQTT
-* Scikit-learn
-* Raspberry Pi
-* MCP2515 CAN module
-* Air780EU 4G LTE module
-
----
-
-
-## Academic Context
-
-This project was developed as part of an Edge Computing academic course, demonstrating:
-
-* IoT system design
-* Dataset generation
-* Machine Learning integration
-* Edge-based inference
-* Real-time systems
-
----
-
-## Future Work
-
-* Larger real-world dataset collection
-* Sequential models (LSTM)
-* Anomaly detection
-* Energy consumption optimization
-* Integration with ADAS systems
-
----
-
-## Links
-
-* Live Dashboard
-  https://hugo31810.github.io/vehicle-status-ml-classifier/
-
----
-
-## Author
-
-Hugo Salvador Aizpún
+```mermaid
+graph LR
+    A[Vehicle OBD-II] -->|CAN Bus| B(MCP2515 + TJA1050)
+    B -->|SPI| C{Raspberry Pi<br/>Edge Device}
+    
+    subgraph Edge Computing
+    C -->|1. Acquire| D[Data Processing]
+    D -->|2. Classify| E[ML Model <br/> Random Forest]
+    end
+    
+    E -->|JSON Payload| F[MQTT Publisher]
+    F -->|4G LTE / WiFi| G((MQTT Broker))
+    G -->|Subscribe| H[Web Dashboard]
+    H -->|Visualize| I[User]
