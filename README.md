@@ -188,7 +188,9 @@ python data_generator.py
 
 ## 👨‍💻 Author
 
-**Hugo Salvador Aizpún** *Degree in Artificial Intelligence* *Subject: Ambient Intelligence and Ubiquitous Computing*
+**Hugo Salvador Aizpún** *Degree in Artificial Intelligence* 
+
+*Subject: Ambient Intelligence and Ubiquitous Computing*
 
 [GitHub Profile](https://www.google.com/search?q=https://github.com/Hugo31810)
 
