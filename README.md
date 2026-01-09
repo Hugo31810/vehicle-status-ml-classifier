@@ -18,6 +18,7 @@ This project implements a complete **End-to-End IoT solution** that acquires veh
 
 
 | ![Dashboard Preview](assets/11.png) | ![Dashboard Preview](assets/2.png) | ![Dashboard Preview](assets/3.png) |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
 
 ---
 
