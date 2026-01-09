@@ -36,7 +36,7 @@ model = RandomForestClassifier(
 model.fit(X_train, y_train)
 
 import joblib
-joblib.dump(model, "vehicle_status_model.pkl")
+joblib.dump(model, "vehicle_state_model.pkl")
 
 
 # 4. Evaluacion

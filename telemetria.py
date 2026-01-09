@@ -15,7 +15,7 @@ from paho.mqtt.enums import CallbackAPIVersion
 import joblib
 import pandas as pd
 
-# Intentar importar librerías de hardware
+
 try:
     import can
 except ImportError:
@@ -26,8 +26,8 @@ try:
 except ImportError:
     pynmea2 = None
 
-# --- CONFIGURACIÓN GENERAL ---
-MODO_ACTIVO = False  # Cambiar a True solo si estás en la Raspberry con hardware
+
+MODO_ACTIVO = False
 
 BROKER = "broker.emqx.io"
 PORT = 1883
@@ -37,12 +37,11 @@ CAN_INTERFACE = "can0"
 GPS_PORT = "/dev/serial0"
 GPS_BAUDRATE = 9600
 
-# Variables globales de control
 gps_data = {"lat": 0.0, "lon": 0.0, "sats": 0}
 gps_running = True
 last_velocity = 0
 
-# --- CARGA DEL CLASIFICADOR ---
+# CARGA DEL CLASIFICADOR
 DATA_MODEL = "vehicle_state_model.pkl"
 try:
     classifier = joblib.load(DATA_MODEL)
@@ -51,7 +50,7 @@ except Exception as e:
     print(f"Error al cargar clasificador: {e}")
     classifier = None
 
-# --- CONTROL DE HARDWARE (GPS / CAN / OBD) ---
+# CONTROL DE HARDWARE
 
 def read_gps():
     global gps_data, gps_running
@@ -113,7 +112,7 @@ def read_obd(bus):
     data.update(gps_data)
     return data
 
-# --- GESTIÓN DE DATOS Y LÓGICA ---
+# GESTION DE DATOS
 
 def generate_data():
     """Simulación de datos para pruebas fuera del coche"""
@@ -134,7 +133,7 @@ def process_status(data):
     d_v = v_actual - last_velocity
     last_velocity = v_actual
 
-    # Estructura de columnas exacta del modelo pkl
+
     cols = ["rpm", "velocidad", "acelerador", "carga_motor", "delta_velocidad"]
     frame = pd.DataFrame([[
         data["rpm"], v_actual, data["throttle"], data["load"], d_v
@@ -170,7 +169,6 @@ def connect_service():
             return client
         except: time.sleep(2)
 
-# --- FLUJO PRINCIPAL ---
 
 def main():
     global gps_running
@@ -189,13 +187,12 @@ def main():
 
     try:
         while True:
-            # Obtener datos (Reales o Simulados)
             current_data = read_obd(bus) if MODO_ACTIVO else generate_data()
 
             # Clasificación de estado
             estado = process_status(current_data)
-            current_data["status"] = estado        # Para el log CSV
-            current_data["estado_ml"] = estado    # CLAVE: Para que la interfaz web lo reconozca
+            current_data["status"] = estado
+            current_data["estado_ml"] = estado
 
             # Transmisión y registro
             service_client.publish(TOPIC, json.dumps(current_data))
